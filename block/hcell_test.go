@@ -10,14 +10,14 @@ func TestDataRecordMarshaling(t *testing.T) {
 	recordData := [][]byte{
 		{
 			// Size
-			0x10, 0x00, 0x00, 0x00,
+			0x14, 0x00, 0x00, 0x00,
 			// Data
 			0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41,
 			0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41,
 		},
 		{
 			// Size
-			0x08, 0x00, 0x00, 0x00,
+			0x0c, 0x00, 0x00, 0x00,
 			// Data
 			0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42,
 		},
@@ -30,11 +30,11 @@ func TestDataRecordMarshaling(t *testing.T) {
 	}
 	expect := []*DataRecord{
 		&DataRecord{
-			HCellData: HCellData{BlockSize: 16},
+			HCellData: HCellData{BlockSize: 20},
 			Data:      []byte("AAAAAAAAAAAAAAAA"),
 		},
 		&DataRecord{
-			HCellData: HCellData{BlockSize: 8},
+			HCellData: HCellData{BlockSize: 12},
 			Data:      []byte("BBBBBBBB"),
 		},
 		&DataRecord{

@@ -104,6 +104,9 @@ func (dr *DataRecord) unmarshal(data []byte) error {
 	if err := binaryRead(data, &dr.BlockSize); err != nil {
 		return err
 	}
-	dr.Data = data[HCellSizeLength:]
+	if err := dr.assertPayloadDataSize(data); err != nil {
+		return err
+	}
+	dr.Data = data[HCellSizeLength:dr.Size()]
 	return nil
 }
